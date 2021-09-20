@@ -6,6 +6,8 @@ export default gql`
         id: ID!
         comment: String!
         active: Boolean!
+        userId: ID
+        user: User
     }
 
     type Query {
