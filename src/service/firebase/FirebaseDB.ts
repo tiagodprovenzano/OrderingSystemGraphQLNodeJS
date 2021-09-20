@@ -34,10 +34,9 @@ export abstract class FirebaseDB<ReturnType extends IExtendedType> {
     });
   }
 
-  async getMany(): Promise<(ReturnType & Record<string, any>)[]> {
+  async getMany(): Promise<ReturnType[]> {
     const data: ReturnType[] = [];
     const snapshot = await this.db.get();
-    console.log('this.db', this.db)
     if (snapshot.empty) {
       return [];
     }

@@ -4,10 +4,10 @@ import { IContext } from "../..";
 import ps from "../../service/pubsub";
 
 async function getOrders(_root: any, _args: any, {ordersAPI}: IContext ): Promise<IOrders[]> {
-    return await ordersAPI.getOrders()
+    return await ordersAPI.getMany()
 }
 async function getOrder(_root: any, {id}: {id: string}, {ordersAPI}: IContext ): Promise<IOrders | null> {
-    return await ordersAPI.getOrder(id)
+    return await ordersAPI.getOne(id)
 }
 
 async function addOrder(_root: any, {order}:{order: Omit<IOrders, 'id'>}, {ordersAPI}: IContext) {
@@ -66,6 +66,7 @@ export const ordersResolvers: IResolvers = {
     },
 
     Order:{
-        user:getUser
+        user:getUser,
+        // ...
     }
 }

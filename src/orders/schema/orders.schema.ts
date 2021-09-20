@@ -9,7 +9,8 @@ export default gql`
         userId: ID
         user: User
     }
-
+    
+    # GETS
     type Query {
         orders: [Order]
         order(id: ID!):Order
@@ -18,6 +19,7 @@ export default gql`
     input AddOrder{
         comment: String!
         active: Boolean!
+        userId: ID!
     }
     input EditOrder{
         userId: ID
@@ -33,7 +35,7 @@ export default gql`
     }
 
     type DeletionMessage {id: ID!, success: Boolean!, message: String!}
-
+    # Edit, delete e post
     type Mutation {
         addOrder(order: AddOrder!):Order
         editOrder(id: ID!, payload: EditOrder!):Order
