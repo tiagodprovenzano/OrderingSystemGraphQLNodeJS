@@ -10,12 +10,16 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { OrdersAPI } from "./orders/data/OrdersAPI";
 import { ordersResolvers } from "./orders/resolvers";
 import { typeDefs } from "./schema.graphql";
+import { UsersAPI } from "./users/data/UsersAPI";
+import { usersResolvers } from "./users/resolvers";
 
 const context = {
   ordersAPI: new OrdersAPI(),
+  usersAPI: new UsersAPI()
 };
 
-const resolvers = [ordersResolvers];
+const resolvers = [ordersResolvers, usersResolvers];
+
 export type IContext = typeof context;
 
 async function start() {

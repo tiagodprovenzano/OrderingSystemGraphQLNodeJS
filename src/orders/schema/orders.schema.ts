@@ -20,6 +20,7 @@ export default gql`
         active: Boolean!
     }
     input EditOrder{
+        userId: ID
         comment: String
         active: Boolean
         id: ID

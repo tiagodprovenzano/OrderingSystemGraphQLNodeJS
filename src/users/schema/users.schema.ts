@@ -7,4 +7,20 @@ export default gql`
         name: String!
         email: String!
     }
+
+    input AddUser {
+        name: String!
+        email: String!
+    }
+
+    type Query {
+        users: [User]
+        user(id: ID!): User
+    }
+
+
+
+    type Mutation {
+        addUser(user: AddUser): User 
+    }
 `

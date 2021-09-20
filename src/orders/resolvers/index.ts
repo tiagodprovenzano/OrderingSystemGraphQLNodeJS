@@ -21,6 +21,13 @@ async function deleteOrder(_root: any, {id}: {id: string}, {ordersAPI}: IContext
     return await ordersAPI.delete(id)
 }
 
+async function getUser(root: IOrders, _args: any, {usersAPI}: IContext){
+    if(root.userId){
+        return await usersAPI.getOne(root.userId);
+    }
+    return null
+}
+
 function orderCreatedSubscribe(){
     return ps.asyncIterator(['ORDER_CREATED'])
 }
@@ -56,5 +63,9 @@ export const ordersResolvers: IResolvers = {
             subscribe: orderRemovedSubscribe,
             resolve: (root) => root
         }
+    },
+
+    Order:{
+        user:getUser
     }
 }

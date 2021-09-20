@@ -1,9 +1,12 @@
 import { IOrders } from "../../orders/types/IOrders";
+import { IUsers } from "../../users/types/IUsers";
 import firebase from "./index";
 
 type IDb = ReturnType<typeof firebase.db.collection>;
 
-export abstract class FirebaseDB<ReturnType extends IOrders> {
+type IExtendedType = IOrders | IUsers
+
+export abstract class FirebaseDB<ReturnType extends IExtendedType> {
   firestore: typeof firebase.db;
   collection: string;
   db: IDb;
@@ -34,6 +37,7 @@ export abstract class FirebaseDB<ReturnType extends IOrders> {
   async getMany(): Promise<(ReturnType & Record<string, any>)[]> {
     const data: ReturnType[] = [];
     const snapshot = await this.db.get();
+    console.log('this.db', this.db)
     if (snapshot.empty) {
       return [];
     }
