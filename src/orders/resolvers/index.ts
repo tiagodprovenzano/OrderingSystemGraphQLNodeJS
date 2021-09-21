@@ -23,7 +23,7 @@ async function deleteOrder(_root: any, {id}: {id: string}, {ordersAPI}: IContext
 
 async function getUser(root: IOrders, _args: any, {usersAPI}: IContext){
     if(root.userId){
-        return await usersAPI.getOne(root.userId);
+        return await usersAPI.getOneDataLoader.load(root.userId);
     }
     return null
 }
